@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevLinks | Hudson Santos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <header id="profile">
+        <img
+          src="./assets/eu-avatar.jpeg"
+          alt="Foto de Hudson Santos."
+          id="profile-img"
+        />
+        <p>@devh_udson</p>
+      </header>
+
+      <div id="switch" onclick="toggleMode()" role="switch" aria-checked="false">
+        <button aria-label="Alternar tema"></button>
+        <span></span>
+      </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="https://www.linkedin.com/in/hudson-santos-1b4b4b1b8/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li>
+          <li><a href="https://github.com/devh_udson" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://twitter.com/devh_udson" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+          <li>
+            <a href="https://www.instagram.com/devh_udson/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="social-links">
+        <a href="https://github.com/devh_udson" target="_blank" rel="noopener noreferrer" aria-label="Perfil do GitHub">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+        <a href="https://www.instagram.com/devh_udson/" target="_blank" rel="noopener noreferrer" aria-label="Perfil do Instagram">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="https://twitter.com/devh_udson" target="_blank" rel="noopener noreferrer" aria-label="Perfil do Twitter">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a href="https://www.linkedin.com/in/hudson-santos-1b4b4b1b8/" target="_blank" rel="noopener noreferrer" aria-label="Perfil do LinkedIn">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+      </div>
+
+      <footer>
+        <p>Desenvolvido por Hudson S.M &copy; 2025</p>
+      </footer>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

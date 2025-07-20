@@ -1,0 +1,232 @@
+/*
+ * Reset Básico
+ * Aplica um reset de margin, padding e box-sizing para consistência entre navegadores.
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* IMPORTANTE: Nenhuma transição global aqui, para evitar conflitos */
+}
+
+/*
+ * Variáveis CSS (Custom Properties)
+ * Define variáveis para cores, URLs de fundo e estilos do "switch" no tema padrão (escuro).
+ */
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5); /* Levemente mais opaco para melhor contraste */
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg); /* Imagem da LUA para o modo DARK */
+}
+
+/*
+ * Tema "light"
+ * Redefine as variáveis CSS para o tema claro, ajustando cores e URLs de fundo.
+ */
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05); /* Ajuste para um fundo mais suave no modo claro */
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg); /* Imagem do SOL para o modo LIGHT */
+}
+
+/*
+ * Estilos do Corpo (body)
+ * Define o fundo da página e a fonte padrão.
+ */
+body {
+  background: var(--bg-url) no-repeat top center/cover;
+  font-family: "Inter", sans-serif;
+  color: var(--text-color); /* Garante que o texto dentro do body use a cor da variável */
+  height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+  transition: background 0.3s ease-in-out; /* Transição suave para o background do tema */
+}
+
+/* Garante que todos os elementos dentro do body herdem a cor do texto definida */
+body * {
+  color: var(--text-color);
+  transition: color 0.3s ease-in-out; /* Transição suave para a cor do texto */
+}
+
+/*
+ * Contêiner Principal
+ * Define a largura máxima e centraliza o contêiner na página.
+ */
+#container {
+  width: 100%; /* Inicia com 100% para ser responsivo em telas menores */
+  max-width: 588px; /* Largura máxima para desktops */
+  margin: 56px auto 0; /* Centraliza horizontalmente e adiciona margem superior */
+  padding: 0 24px; /* Adiciona padding lateral para não colar nas bordas em mobile */
+}
+
+/*
+ * Seção de Perfil (header#profile)
+ * Estilos para a imagem e nome de usuário.
+ */
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+  height: 112px; /* Adicionado: Garante que a área da imagem seja um quadrado */
+  border-radius: 50%; /* Adiciona borda arredondada para a imagem do perfil */
+  border: 2px solid var(--stroke-color); /* Adiciona uma borda sutil */
+  transition: border 0.3s ease-in-out; /* Transição para a borda */
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer, cortando o excesso */
+  object-position: center; /* Centraliza a parte visível da imagem */
+}
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+/*
+ * Componente Switch (Tema)
+ * Estilos para o botão de alternância de tema.
+ */
+#switch {
+  position: relative; /* Essencial para posicionar o botão */
+  width: 64px; /* Largura do trilho do switch */
+  margin: 4px auto; /* Centraliza o switch */
+  cursor:pointer;
+}
+
+#switch button {
+  width: 32px; /* Largura do botão */
+  height: 32px; /* Altura do botão */
+  /* IMPORTANTE: Garante que o background usa a variável atualizada e transiciona */
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%; /* Faz o botão ser redondo */
+
+  /* Posicionamento do botão */
+  position: absolute;
+  top: 50%; /* Alinha o centro verticalmente do trilho */
+  transform: translateY(-50%); /* Ajusta a posição vertical com base na sua própria altura */
+  left: 0; /* Posição inicial: 0px da borda esquerda do #switch */
+  z-index: 1;
+  cursor:pointer; /* Muda o cursor para indicar que é clicável */
+  /* Transição para movimento (left), background-image e opacidade do ícone */
+  transition: left 0.3s ease-in-out, background 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1; /* Garante que o botão comece visível */
+}
+
+/* No modo 'light', move o botão para a direita */
+.light #switch button {
+  right: 0; /* Move o botão para a direita */
+  left: initial; /* Reseta a posição inicial */
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Prefixo para compatibilidade com navegadores WebKit */
+  border-radius: 9999px; /* Um valor alto para criar um pill shape (formato de pílula) */
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out; /* Transição para o span do switch */
+}
+
+/*
+ * Lista de Links (nav ul)
+ * Estilos para os botões de link.
+ */
+nav ul {
+  list-style: none; /* Remove os marcadores de lista */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espaçamento entre os links */
+  padding: 24px 0;
+}
+
+nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px; /* Ajuste para diminuir a altura e largura dos botões */
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-decoration: none; /* Remove sublinhado dos links */
+  font-weight: 500;
+  transition: background 0.2s, border 0.2s; /* Transição suave para hover */
+  
+  width: 90%; /* Define uma largura relativa ao pai (ul) */
+  max-width: 300px; /* Limita a largura máxima para que não cresçam demais em telas grandes */
+  margin-left: auto; /* Centraliza o item horizontalmente */
+  margin-right: auto; /* Centraliza o item horizontalmente */
+}
+
+nav ul li a:hover {
+  background: var(--highlight-color); /* Use highlight-color para um efeito de hover mais notável */
+  border: 1.5px solid var(--text-color);
+}
+
+/*
+ * Links Sociais (#social-links)
+ * Estilos para os ícones de redes sociais.
+ */
+#social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* GARANTE O ALINHAMENTO VERTICAL */
+  gap: 10px; /* Adiciona um pequeno espaçamento entre os ícones */
+  padding: 24px 0;
+  font-size: 20px; /* Ajuste para diminuir o tamanho dos ícones */
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 50%;
+  transition: background 0.2s; /* Já tem transição aqui para background */
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+/*
+ * Rodapé (footer)
+ * Estilos para o texto do rodapé.
+ */
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-color);
+  transition: color 0.3s ease-in-out; /* Transição para a cor do rodapé */
+}
+
+/*
+ * Media Queries
+ * Ajustes para telas maiores (desktop).
+ */
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+
+  #container {
+    padding: 0;
+  }
+}
